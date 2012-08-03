@@ -33,7 +33,7 @@ then
     # initialize a buildout.cfg using the environment
     cat >> openshift-buildout.cfg << EOF
 [buildout]
-extends = buildout.cfg
+extends = deployment.cfg
 eggs-directory = ${OPENSHIFT_DATA_DIR}/eggs/
 download-cache = ${OPENSHIFT_TMP_DIR}/${OPENSHIFT_APP_UUID}-cache/
 extends-cache = ${OPENSHIFT_TMP_DIR}/${OPENSHIFT_APP_UUID}-cache/
