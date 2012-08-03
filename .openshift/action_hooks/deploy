@@ -53,5 +53,5 @@ EOF
     # build!
     ./bin/buildout -vvvv -c openshift-buildout.cfg
     rm -f ./wsgi/application
-    cp ./bin/application ./wsgi/application
+    cp ./bin/wsgi ./wsgi/application
 fi
