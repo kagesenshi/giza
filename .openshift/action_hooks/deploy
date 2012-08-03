@@ -7,7 +7,7 @@
 VENV=${OPENSHIFT_GEAR_DIR}/virtenv/bin/python
 
 if [ ! -f ${VENV} ];then
-    virtualenv --system-site-packages ${OPENSHIFT_GEAR_DIR}/virtenv/
+    virtualenv ${OPENSHIFT_GEAR_DIR}/virtenv/
 fi
 
 if [ ! -f ${OPENSHIFT_REPO_DIR}/bin/buildout ]
