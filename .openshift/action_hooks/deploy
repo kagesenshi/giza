@@ -49,9 +49,5 @@ EOF
     # build!
     ./bin/buildout -vvvv -c openshift-buildout.cfg
     rm -f ./wsgi/application
-    cp ./bin/wsgi ./wsgi/application
-    # symlink log dir
-    mkdir var/
-    ln -s ${OPENSHIFT_LOG_DIR} var/log
-    popd
+    cp ./bin/application ./wsgi/application
 fi
