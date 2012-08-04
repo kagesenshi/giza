@@ -12,6 +12,7 @@ pyramid.includes =
 
 tm.attempts = 3
 zodbconn.uri = zconfig://${relstorage:output}
+fanstatic.bottom = true
 
 [server:main]
 use = egg:waitress#main

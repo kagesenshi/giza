@@ -11,6 +11,7 @@ requires = [
     'pyramid_zodbconn',
     'pyramid_tm',
     'pyramid_debugtoolbar',
+    'pyramid_fanstatic',
     'ZODB3',
     'RelStorage',
     'waitress',
@@ -39,6 +40,15 @@ setup(name='giza',
       entry_points = """\
       [paste.app_factory]
       main = giza:main
+
+      # Fanstatic resource library
+      [fanstatic.libraries]
+      giza = giza.resources:library
+
+      # A console script to serve the application and monitor static resources
+      [console_scripts]
+      pserve-fanstatic = giza.resources:pserve
+
       """,
       )
 
