@@ -1,0 +1,13 @@
+%import relstorage
+<zodb main>
+  <relstorage>
+    <mysql>
+      host ${env:OPENSHIFT_DB_HOST}
+      user ${env:OPENSHIFT_DB_USERNAME}
+      passwd ${env:OPENSHIFT_DB_PASSWORD}
+      port ${env:OPENSHIFT_DB_PORT}
+      db ${relstorage:dbname}
+    </mysql>
+  </relstorage>
+  cache-size 100000
+</zodb>
