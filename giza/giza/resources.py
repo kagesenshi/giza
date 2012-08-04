@@ -2,16 +2,28 @@ from fanstatic import Library
 from fanstatic import Resource
 from fanstatic import Group
 #from js.lesscss import LessResource
+from js.bootstrap import bootstrap_responsive_css, bootstrap
+from js.jquery import jquery
+from js.jquery_tools import jquery_tools
 
-library = Library('', 'resources')
+library = Library('giza', 'resources')
 
-css_resource = Resource(library, 'main.css')
+gridster_js = Resource(library, 'gridster/jquery.gridster.js',
+        depends=[jquery])
 
-js_resource = Resource(library, 'main.js', bottom=True)
+gridster_css = Resource(library, 'gridster/jquery.gridster.css')
+
+
+css_resource = Resource(library, 'main.css', depends=[bootstrap_responsive_css])
+
+js_resource = Resource(library, 'main.js', bottom=True, depends=[bootstrap,
+    gridster_js])
+
 
 #less_resource = LessResource(library, 'main.less')
 
-giza_resources = Group([css_resource, js_resource,
+giza_resources = Group([gridster_css, jquery_tools,
+                        css_resource, js_resource,
 #                     less_resource,
                     ])
 

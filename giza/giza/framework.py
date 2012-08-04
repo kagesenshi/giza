@@ -21,18 +21,23 @@ class View(object):
         self.request = request
         self.context = context
 
-    def render(self):
-        return {}
-
     def __call__(self):
+        if getattr(self, 'update', None):
+            self.update()
+
         template = getattr(self, 'template', None)
         if template is not None:
-            self.request.response.text = template(
+            return template(
                     context=self.context,
                     request=self.request,
                     view=self,
                     views=ViewLookupHelper(self.context, self.request),
             )
+        elif getattr(self, 'render', None):
+            return self.render()
+        else:
+            raise Exception('Could not locate neither template nor render '
+                            'method')
 
 def context(giza_context):
     frame = sys._getframe(1)
@@ -56,6 +61,7 @@ def view(wrapped):
 
         def render(context, request):
             v = ob(context, request)()
+            request.response.text = v
             return request.response
 
         render.__original_view__ = ob
@@ -78,6 +84,9 @@ def view(wrapped):
 
         if giza_name in registered_views:
             raise Exception("Conflicting view name '%s'" % giza_name)
+
+        if getattr(ob, 'template', None) and getattr(ob, 'render', None):
+            raise Exception("Could not have both template and render method")
 
         registry.registerAdapter(render, (
             IViewClassifier, IRequest, giza_context), IView, name=giza_name)

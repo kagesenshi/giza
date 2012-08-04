@@ -15,6 +15,10 @@ requires = [
     'ZODB3',
     'RelStorage',
     'waitress',
+    'js.bootstrap',
+    'js.jqueryui',
+    'zope.component',
+    'js.jquery_tools'
     ]
 
 setup(name='giza',

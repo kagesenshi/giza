@@ -1,2 +1,7 @@
 /* main css style sheet for  */
-
+.gridster li {
+    border: 1px solid black;
+}
+.gridster ul {
+    list-style:none;
+}
